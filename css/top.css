@@ -1,0 +1,14 @@
+html {
+  font-size: clamp(14px, calc(14px + (100vw - 375px) * (2 / 225)), 16px);
+}
+header {
+  width: 100%;
+}
+
+.menu {
+  display: flex;
+  gap: 1rem;
+}
+.menu-item {
+  border: solid 1px red;
+}
