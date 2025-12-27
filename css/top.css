@@ -12,7 +12,7 @@ main {
   z-index: 0;
   position: relative;
   background-color: #006F86;
-  min-height: 100dvh;
+  min-height: 150dvh;
 }
 
 .menu {
@@ -42,15 +42,10 @@ main {
 }
 .bubble {
   position: absolute;
-  bottom: 0;
   background-image: url("../image/Frame\ 1.png");
   background-size: cover;
-  animation-name            : floating;
-  animation-timing-function : linear;
-  animation-iteration-count : 1;
-  animation-fill-mode       : forwards;
 }
 @keyframes floating {
-  0%   { bottom: 0%; }
-  100% { bottom: 100%; }
+  0% {}
+  100% { top: 0; }
 }
