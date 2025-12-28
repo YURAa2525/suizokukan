@@ -75,6 +75,8 @@ main {
 }
 
 .mv {
+  z-index: 1;
+  position: relative;
   width : 100%;
   border: solid 1px red;
 }
@@ -86,16 +88,29 @@ main {
 .mv .slide {
   flex-shrink: 0;
   width: 100%;
-  padding: 0 10%;
+  height: 50dvh;
+  padding: 0 5%;
 }
 .mv .slide__img {
   width: 100%;
-  object-fit: contain;
+  height: 100%;
+  object-fit: cover;
 }
-.mv .pagenation {
-  width: 200px;
+.mv .slider-dots {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  width: fit-content;
   height: 20px;
   border: solid 1px red;
+}
+.mv .slider-dot {
+  width: 20px;
+  height: 100%;
+  background-image: url("../image/slider-dot.webp");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 
