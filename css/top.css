@@ -1,3 +1,11 @@
+/* ﾌﾞﾚｰｸﾎﾟｲﾝﾄ初期化  */
+.bp-min-width600-hide {
+  display: block;
+}
+.bp-min-width600-show {
+  display: none;
+}
+
 html {
   font-size: clamp(14px, calc(14px + (100vw - 375px) * (2 / 225)), 16px);
 }
@@ -72,3 +80,11 @@ main {
 }
 
 
+@media screen and (min-width: 600px) {
+  .bp-min-width600-hide {
+    display: none;
+  }
+  .bp-min-width600-show {
+    display: inline-block;
+  }
+}
