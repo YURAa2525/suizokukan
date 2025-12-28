@@ -76,22 +76,26 @@ main {
 
 .mv {
   width : 100%;
-  /* height: 50dvh; */
   border: solid 1px red;
 }
-.mv-slider {
+.mv .slider {
   display: flex;
   overflow: hidden;
   width: 100%;
 }
-.mv-slide {
+.mv .slide {
   flex-shrink: 0;
   width: 100%;
   padding: 0 10%;
 }
-.mv-slide__img {
+.mv .slide__img {
   width: 100%;
   object-fit: contain;
+}
+.mv .pagenation {
+  width: 200px;
+  height: 20px;
+  border: solid 1px red;
 }
 
 
