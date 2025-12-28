@@ -1,5 +1,28 @@
 $(function() {
+  mainMarginTop();
   // createBubble();
+  mvSlide();
+
+
+  // --------------------------------------------
+  // js-main の margin-top 値を js-header の高さに合わせる
+  // --------------------------------------------
+  function mainMarginTop() {
+    _mainMarginTop();
+
+    let timer;
+    $(window).on("resize", () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        _mainMarginTop();
+      }, 100);
+    });
+
+    function _mainMarginTop() {
+      const headerHeight = $(".js-header").height();
+      $(".js-main").css("margin-top", `${headerHeight}px`);
+    }
+  }
 });
 
 
@@ -79,4 +102,9 @@ function createBubble() {
       createBubbleCore("auto");
     }, setInterval * 1000);
   }
+}
+
+
+function mvSlide() {
+
 }
