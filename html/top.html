@@ -18,6 +18,8 @@
     <script src="../script/top.js"></script>
   </head>
   <body>
+    <div id="svg-sprite" style="display: none;"></div>
+
     <header class="js-header">
       <nav>
         <ul class="menu">
@@ -73,10 +75,14 @@
             </div>
           </div>      
           <ul class="slider-admin__dots">
-            <li class="slider-admin__dot u-click"></li>
-            <li class="slider-admin__dot u-click"></li>
-            <li class="slider-admin__dot u-click"></li>
-            <li class="slider-admin__dot u-click"></li>
+            <li class="slider-admin__dot js-dot u-click">
+              <svg class="slider-dot">
+                <use href="#slider-dot"></use>
+              </svg>
+            </li>
+            <li class="slider-admin__dot js-dot u-click"></li>
+            <li class="slider-admin__dot js-dot u-click"></li>
+            <li class="slider-admin__dot js-dot u-click"></li>
           </ul>
         </div>
       </div>

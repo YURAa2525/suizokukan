@@ -1,6 +1,8 @@
 let g_userDevice = "mobile";
 
 $(function() {
+  $("#svg-sprite").load("svg.html");
+
   if (window.matchMedia("(pointer: fine)").matches) g_userDevice = "pc";
 
   mainMarginTop();
@@ -166,27 +168,42 @@ function slideManage() {
       if (Math.abs(diffX) < Math.abs(diffY)) return;
       
       if (diffX < 0) {
-        showSlideIx = Math.min(showSlideIx + 1, maxSlideIx);
+        showSlideIx += 1;
+        if (showSlideIx > maxSlideIx) showSlideIx = 0;
       }
       else {
-        showSlideIx = Math.max(showSlideIx - 1, 0);
+        showSlideIx -= 1;
+        if (showSlideIx < 0) showSlideIx = maxSlideIx;
       }
 
       setAgainSlide();
     });
   }
 
-  $(".mv").on("click", ".js-arrow", function() {
+  // 端末問わず js-arrow (左右矢印) のｸﾘｯｸで発火
+  $(".slider-admin").on("click", ".js-arrow", function() {
     if (isWait) return;
     isWait = true;
 
     const arrowDire = $(this).data("arrow");
     if (arrowDire == "left") {
-      showSlideIx = Math.min(showSlideIx + 1, maxSlideIx);
+      showSlideIx += 1;
+      if (showSlideIx > maxSlideIx) showSlideIx = 0;
     }
     else if (arrowDire == "right") {
-      showSlideIx = Math.max(showSlideIx - 1, 0);
+      showSlideIx -= 1;
+      if (showSlideIx < 0) showSlideIx = maxSlideIx;
     }
+
+    setAgainSlide();
+  });
+
+  // 端末問わず js-dot (魚ﾄﾞｯﾄ) のｸﾘｯｸで発火
+  $(".slider-admin").on("click", ".js-dot", function() {
+    if (isWait) return;
+    isWait = true;
+
+    showSlideIx = $(this).index();
 
     setAgainSlide();
   });
@@ -204,6 +221,10 @@ function slideManage() {
       "animation-play-state": "paused",
     });
 
+    // 強制ﾘﾌﾛｰで none と paused を確定
+    // → 強制ﾘﾌﾛｰがないと、同ﾌﾚｰﾑ内の animation 上書き = 変化なし とされ、none や paused が無効になる
+    void $slides[0].offsetHeight;
+
     $.each(slideDelayList, function(i, delay) {
       let setSlideIx = showSlideIx + i;
       if (setSlideIx > maxSlideIx) setSlideIx -= (maxSlideIx + 1);
@@ -218,4 +239,10 @@ function slideManage() {
       isWait = false;
     }, 200);
   }
+
+
+  // --------------------------------------------
+  // 
+  // -------------------------------------------- 
+
 }

@@ -1,5 +1,6 @@
 [{000214A0-0000-0000-C000-000000000046}]
-Prop3=19,9
+Prop3=19,2
 [InternetShortcut]
 IDList=
-URL=file:///C:/xampp/portfolio/suizokukan/html/top.html
+URL=http://localhost/portfolio/suizokukan/html/top.html
+HotKey=0
