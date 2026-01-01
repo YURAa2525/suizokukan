@@ -142,13 +142,7 @@ function slideManage() {
     slideDelayList.push(delay * i);
   }
 
-  // js-slide の順番ごとに遅延時間を設定
-  $(".js-slide").each(function(i) {
-    $(this).css({
-      "z-index"        : maxZIndex - i,
-      "animation" : `${slideAnimName} ${slideAnimDuration}s linear ${slideDelayList[i]}s infinite`,
-    });
-  });
+  setAgainSlide();
 
   // ﾓﾊﾞｲﾙ端末の場合のみ横ｽｸﾛｰﾙで発火
   if (g_userDevice == "mobile") {
@@ -177,6 +171,8 @@ function slideManage() {
       else {
         showSlideIx = Math.max(showSlideIx - 1, 0);
       }
+
+      setAgainSlide();
     });
   }
 
@@ -191,10 +187,35 @@ function slideManage() {
     else if (arrowDire == "right") {
       showSlideIx = Math.max(showSlideIx - 1, 0);
     }
+
+    setAgainSlide();
   });
 
 
-  function slideItem() {
+  // --------------------------------------------
+  // js-slide ごとに showSlideIx に応じた animation (delay) と z-index 値を再ｾｯﾄする
+  // > name:none とすると animation 値が初期化されるため、delay 以外も再ｾｯﾄする
+  // --------------------------------------------
+  function setAgainSlide() {
+    const $slides = $(".js-slide");
+    
+    $slides.css({
+      "animation-name"      : "none",
+      "animation-play-state": "paused",
+    });
 
+    $.each(slideDelayList, function(i, delay) {
+      let setSlideIx = showSlideIx + i;
+      if (setSlideIx > maxSlideIx) setSlideIx -= (maxSlideIx + 1);
+
+      $slides.eq(setSlideIx).css({
+        "z-index"  : maxZIndex - i,
+        "animation": `${slideAnimName} ${slideAnimDuration}s linear ${delay}s infinite`,
+      });
+    })
+
+    setTimeout(() => {
+      isWait = false;
+    }, 200);
   }
 }
